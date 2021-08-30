@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>OAuth2 Test</title>
+</head>
+<body>
+
+	<div>
+		<div th:if="${session.user == null}">
+			<a href="/oauth2/authorization/google" role="button">Google Login</a>
+		</div>
+		<div th:if="${session.user != null}">
+			Hello world!
+			<p th:text="${'email: ' + session.user.email}"></p>
+			<p th:text="${'name: ' + session.user.name}"></p>
+			<span>picture: <img th:src="${session.user.picture}"></img></span>
+		</div>
+	</div>
+</body>
+</html>
