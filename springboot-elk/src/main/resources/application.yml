@@ -1,10 +1,12 @@
+#server:
+#  tomcat:
+#    access-log:
+#      enable: true
+#      directory: logs
+#      suffix: .log
+#      prefix: access_log
+#      file-date-format: yyyyMMdd
+#      pattern: '%{yyyy-MM-dd HH:mm:ss}t %s %r %{User-Agent}i %{Referer}i %a %b'
+#    basedir: .
 server:
-  tomcat:
-    access-log:
-      enable: true
-      directory: logs
-      suffix: .log
-      prefix: access_log
-      file-date-format: yyyyMMdd
-      pattern: '%{yyyy-MM-dd HH:mm:ss}t %s %r %{User-Agent}i %{Referer}i %a %b'
-    basedir: .
+  port:8080
