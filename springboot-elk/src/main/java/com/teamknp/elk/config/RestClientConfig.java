@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.client.ClientConfiguration;
 import org.springframework.data.elasticsearch.client.elc.ElasticsearchConfiguration;
 
-//@Configuration
+@Configuration
 public class RestClientConfig extends ElasticsearchConfiguration {
 
     @Override
@@ -15,5 +15,11 @@ public class RestClientConfig extends ElasticsearchConfiguration {
         return ClientConfiguration.builder()
                 .connectedTo("localhost:9200")
                 .build();
+    }
+
+    @Bean
+    @Override
+    public RestClient restClient(ClientConfiguration clientConfiguration) {
+        return super.restClient(clientConfiguration);
     }
 }
