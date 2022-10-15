@@ -10,6 +10,7 @@ import org.joda.time.LocalDate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,22 +21,14 @@ import java.time.format.DateTimeFormatter;
 @RequiredArgsConstructor
 public class ElkController {
 
+    private final RestTemplate restTemplate;
+
     private final ElkService elkService;
 
+    @GetMapping(value = "elk")
     @ResponseBody
-    @GetMapping(value = "/hellos/{id}")
-    public ResponseEntity<?> getHello(@PathVariable("id") final Long id) {
-        log.info("GET getHello inside id:" + id);
-        ResponseDto responseDto = new ResponseDto();
-        responseDto.setData(elkService.searchHello(id));
-        String response = "Hello,  " + LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
-        log.info("GET getHello response : {}", response);
-        return new ResponseEntity(response, HttpStatus.OK);
-    }
-    @ResponseBody
-    @PostMapping(value = "/hellos")
-    public ResponseEntity<?> insertHello(@RequestBody HelloDto helloDto) {
-        final Long id = elkService.insertHello(helloDto);
-        return new ResponseEntity<>(id, HttpStatus.CREATED);
+    public ResponseEntity<?> hello() {
+        String response = "Hello Elk! " + LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
